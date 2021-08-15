@@ -22,8 +22,18 @@ public class Controller {
     @PostMapping(value = "/temperature", consumes = "application/json", produces = "application/json")
     public void sendTemperature(@RequestBody Message message) {
         try {
-            // sends message to kafka topic queue
-            kafkaTemplate.send(IKafkaConstants.KAFKA_TOPIC, message).get();
+            // sends temperature to kafka topic queue
+            kafkaTemplate.send(IKafkaConstants.KAFKA_TEMPERATURE_TOPIC, message).get();
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping(value = "/crying", consumes = "application/json", produces = "application/json")
+    public void sendCrying(@RequestBody Message message) {
+        try {
+            // sends crying to kafka topic queue
+            kafkaTemplate.send(IKafkaConstants.KAFKA_CRYING_TOPIC, message).get();
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
@@ -31,8 +41,15 @@ public class Controller {
 
     @MessageMapping("/sendTemperature")
     @SendTo("/TEMPERATURE_TOPIC/TEMPERATURE_GROUP")
-    public Message broadcastGroupMessage(@Payload Message message) {
-        // sending this message to all the subscribers
+    public Message broadcastTemperatureGroupMessage(@Payload Message message) {
+        // sends this message to all the subscribers
+        return message;
+    }
+
+    @MessageMapping("/sendCrying")
+    @SendTo("/CRYING_TOPIC/CRYING_GROUP")
+    public Message broadcastCryingGroupMessage(@Payload Message message) {
+        // sends this message to all the subscribers
         return message;
     }
 

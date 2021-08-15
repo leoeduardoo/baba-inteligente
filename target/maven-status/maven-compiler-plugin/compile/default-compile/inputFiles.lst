@@ -1,1 +1,8 @@
+/Users/leosilva/Desktop/Faculdade/Sistemas Orientados a Objetos/Tutorial de Kafka/baba-inteligente/src/main/java/com/grupo03/kafka/model/Message.java
+/Users/leosilva/Desktop/Faculdade/Sistemas Orientados a Objetos/Tutorial de Kafka/baba-inteligente/src/main/java/com/grupo03/kafka/configuration/ProducerConfiguration.java
+/Users/leosilva/Desktop/Faculdade/Sistemas Orientados a Objetos/Tutorial de Kafka/baba-inteligente/src/main/java/com/grupo03/kafka/configuration/ListenerConfiguration.java
+/Users/leosilva/Desktop/Faculdade/Sistemas Orientados a Objetos/Tutorial de Kafka/baba-inteligente/src/main/java/com/grupo03/kafka/constants/IKafkaConstants.java
+/Users/leosilva/Desktop/Faculdade/Sistemas Orientados a Objetos/Tutorial de Kafka/baba-inteligente/src/main/java/com/grupo03/kafka/configuration/WebSocketConfig.java
+/Users/leosilva/Desktop/Faculdade/Sistemas Orientados a Objetos/Tutorial de Kafka/baba-inteligente/src/main/java/com/grupo03/kafka/consumer/MessageListener.java
+/Users/leosilva/Desktop/Faculdade/Sistemas Orientados a Objetos/Tutorial de Kafka/baba-inteligente/src/main/java/com/grupo03/kafka/controller/Controller.java
 /Users/leosilva/Desktop/Faculdade/Sistemas Orientados a Objetos/Tutorial de Kafka/baba-inteligente/src/main/java/com/grupo03/kafka/KafkaApplication.java

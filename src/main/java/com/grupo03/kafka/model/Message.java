@@ -1,47 +1,26 @@
 package com.grupo03.kafka.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Message {
     private String sender;
-    private String temperature;
+    private String type;
+    private String value;
     private String timestamp;
-
-    public Message() {
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
-
-    public Message(String sender, String temperature) {
-        this.sender = sender;
-        this.temperature = temperature;
-    }
-
-    public String getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
-    }
 
     @Override
     public String toString() {
-        return "Message{" +
-                "sender='" + sender + '\'' +
-                ", content='" + temperature + '\'' +
+        return "Message {" +
+                " sender='" + sender + '\'' +
+                " type='" + type + '\'' +
+                ", value='" + value + '\'' +
                 ", timestamp='" + timestamp + '\'' +
                 '}';
     }
