@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -23,6 +24,7 @@ public class KafkaController {
     public void sendTemperature(@RequestBody Message message) {
         try {
             // sends temperature to kafka topic queue
+            message.setTimestamp(LocalDateTime.now().toString());
             kafkaTemplate.send(IKafkaConstants.KAFKA_TEMPERATURE_TOPIC, message).get();
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
@@ -33,6 +35,7 @@ public class KafkaController {
     public void sendCrying(@RequestBody Message message) {
         try {
             // sends crying to kafka topic queue
+            message.setTimestamp(LocalDateTime.now().toString());
             kafkaTemplate.send(IKafkaConstants.KAFKA_CRYING_TOPIC, message).get();
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);

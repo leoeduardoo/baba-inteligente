@@ -14,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "User")
-public class User {
+public class MyUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class User {
     private Long id;
 
     @JsonProperty("username")
-    @Column(name = "username", unique = true, updatable = false)
+    @Column(name = "username")
     private String username;
 
     @JsonProperty("password")
-    @Column(name = "password", updatable = false)
+    @Column(name = "password")
     private String password;
 
 }
