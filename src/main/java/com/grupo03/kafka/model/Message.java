@@ -11,7 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Message {
 
-    private String sender;
     private String type;
     private String value;
     private String timestamp;
@@ -19,7 +18,6 @@ public class Message {
     @Override
     public String toString() {
         return "Message {" +
-                " sender='" + sender + '\'' +
                 " type='" + type + '\'' +
                 ", value='" + value + '\'' +
                 ", timestamp='" + timestamp + '\'' +
