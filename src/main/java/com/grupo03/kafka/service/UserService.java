@@ -18,11 +18,6 @@ public class UserService implements UserDetailsService {
     @Autowired
     MyUserRepository myUserRepository;
 
-    public MyUser saveUser(MyUser myUser) {
-        Optional<MyUser> myUserOptional = myUserRepository.findByUsername(myUser.getUsername());
-        return myUserOptional.isPresent() ? myUserOptional.get() : myUserRepository.save(myUser);
-    }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<MyUser> myUser = myUserRepository.findByUsername(username);

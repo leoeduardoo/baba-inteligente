@@ -4,7 +4,6 @@ import com.grupo03.kafka.model.MyUser;
 import com.grupo03.kafka.service.UserService;
 import com.grupo03.kafka.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -27,7 +26,7 @@ public class UserController {
     @Autowired
     private JwtUtil jwtTokenUtil;
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "*")
     @PostMapping("authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody MyUser myUserRequest) throws Exception {
 
@@ -42,12 +41,6 @@ public class UserController {
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(jwt);
-    }
-
-    @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping("user")
-    public ResponseEntity<MyUser> user(@RequestBody MyUser myUser) {
-        return new ResponseEntity(userService.saveUser(myUser), HttpStatus.OK);
     }
 
 }
