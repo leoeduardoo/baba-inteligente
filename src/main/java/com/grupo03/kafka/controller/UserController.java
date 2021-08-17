@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class UserController {
     @Autowired
     private JwtUtil jwtTokenUtil;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody MyUser myUserRequest) throws Exception {
 
@@ -42,6 +44,7 @@ public class UserController {
         return ResponseEntity.ok(jwt);
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("user")
     public ResponseEntity<MyUser> user(@RequestBody MyUser myUser) {
         return new ResponseEntity(userService.saveUser(myUser), HttpStatus.OK);

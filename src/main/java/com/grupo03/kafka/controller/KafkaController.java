@@ -7,6 +7,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class KafkaController {
     @Autowired
     private KafkaTemplate<String, Message> kafkaTemplate;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping(value = "/temperature", consumes = "application/json", produces = "application/json")
     public void sendTemperature(@RequestBody Message message) {
         try {
@@ -31,6 +33,7 @@ public class KafkaController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping(value = "/crying", consumes = "application/json", produces = "application/json")
     public void sendCrying(@RequestBody Message message) {
         try {
@@ -42,6 +45,7 @@ public class KafkaController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @MessageMapping("/sendTemperature")
     @SendTo("/TEMPERATURE_TOPIC/TEMPERATURE_GROUP")
     public Message broadcastTemperatureGroupMessage(@Payload Message message) {
@@ -49,6 +53,7 @@ public class KafkaController {
         return message;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @MessageMapping("/sendCrying")
     @SendTo("/CRYING_TOPIC/CRYING_GROUP")
     public Message broadcastCryingGroupMessage(@Payload Message message) {
