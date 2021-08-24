@@ -26,7 +26,6 @@ public class UserController {
     @Autowired
     private JwtUtil jwtTokenUtil;
 
-    @CrossOrigin(origins = "*")
     @PostMapping("authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody MyUser myUserRequest) throws Exception {
 
