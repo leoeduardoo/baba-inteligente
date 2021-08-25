@@ -12,13 +12,15 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/temperature", "/crying").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/ws-temperature").setAllowedOrigins("http://localhost:3000").withSockJS();
+        registry.addEndpoint("/ws-crying").setAllowedOrigins("http://localhost:3000").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app");
-        registry.enableSimpleBroker("/topic/");
+        registry.enableSimpleBroker("/CRYING_TOPIC");
+//        registry.enableSimpleBroker("/TEMPERATURE_TOPIC");
     }
 
 }
