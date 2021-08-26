@@ -24,4 +24,8 @@ public class UserService implements UserDetailsService {
         return new User(myUser.get().getUsername(), myUser.get().getPassword(), new ArrayList<>());
     }
 
+    public MyUser loadMyUserByUsername(String username) throws UsernameNotFoundException {
+        return myUserRepository.findByUsername(username).orElse(null);
+    }
+
 }
