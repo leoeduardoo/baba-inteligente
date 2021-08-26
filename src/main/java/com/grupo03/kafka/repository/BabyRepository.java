@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface BabyRepository extends JpaRepository<Baby, Long> {
-    Optional<Baby> findFirstByNameAndBirthDate(String name, String birthDate);
+    Optional<Baby> findFirstByParentId(Long parentId);
 }

@@ -15,6 +15,7 @@ public interface BabyMapper {
 
     @Mappings({
             @Mapping(target = "id", source = "id"),
+            @Mapping(target = "parentId", source = "parentId"),
             @Mapping(target = "name", source = "name"),
             @Mapping(target = "age", source = "age"),
             @Mapping(target = "gender", source = "gender"),
@@ -25,6 +26,7 @@ public interface BabyMapper {
 
     @Mappings({
             @Mapping(target = "id", source = "id"),
+            @Mapping(target = "parentId", source = "parentId"),
             @Mapping(target = "name", source = "name"),
             @Mapping(target = "age", source = "age"),
             @Mapping(target = "gender", source = "gender"),
@@ -35,6 +37,7 @@ public interface BabyMapper {
 
     @Mappings({
             @Mapping(target = "id", ignore = true),
+            @Mapping(target = "parentId", ignore = true),
             @Mapping(target = "name", source = "name"),
             @Mapping(target = "age", source = "age"),
             @Mapping(target = "gender", source = "gender"),

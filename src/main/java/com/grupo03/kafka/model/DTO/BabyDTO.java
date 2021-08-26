@@ -15,6 +15,7 @@ import java.util.List;
 public class BabyDTO {
 
     private Long id;
+    private Long parentId;
     private String name;
     private Integer age;
     private String gender;

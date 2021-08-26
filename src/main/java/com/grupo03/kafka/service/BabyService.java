@@ -1,7 +1,9 @@
 package com.grupo03.kafka.service;
 
+import com.grupo03.kafka.exception.NotFoundException;
 import com.grupo03.kafka.model.Baby;
 import com.grupo03.kafka.model.DTO.BabyDTO;
+import com.grupo03.kafka.model.MyUser;
 import com.grupo03.kafka.repository.BabyRepository;
 import com.grupo03.kafka.util.mapper.BabyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +17,25 @@ public class BabyService {
     @Autowired
     BabyRepository babyRepository;
 
-    public BabyDTO save(BabyDTO babyDTO) {
+    @Autowired
+    UserService userService;
 
-        Optional<Baby> babyOptional = babyRepository.findFirstByNameAndBirthDate(babyDTO.getName(), babyDTO.getBirthDate());
+    public BabyDTO save(BabyDTO babyDTO, String username) throws NotFoundException {
+
+        MyUser myUser = userService.loadMyUserByUsername(username);
+
+        if (myUser == null) {
+            throw new NotFoundException(username);
+        }
+
+        Optional<Baby> babyOptional = babyRepository.findFirstByParentId(myUser.getId());
 
         if (babyOptional.isPresent()) {
+            babyDTO.setId(babyDTO.getId());
             verifyAllergies(babyDTO, babyOptional.get());
         }
+
+        babyDTO.setParentId(myUser.getId());
 
         return BabyMapper.INSTANCE.babyToBabyDTO(babyRepository.save(BabyMapper.INSTANCE.babyDTOToBaby(babyDTO)));
     }

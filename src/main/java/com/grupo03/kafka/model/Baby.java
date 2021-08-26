@@ -14,14 +14,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Baby",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"id", "name", "birth_date"}))
+@Table(name = "Baby")
 public class Baby {
 
     @Id
+    @JsonProperty("id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, updatable = false, insertable = false)
     private Long id;
+
+    @JsonProperty("parentId")
+    @Column(name = "parent_id")
+    private Long parentId;
 
     @JsonProperty("name")
     @Column(name = "name")
