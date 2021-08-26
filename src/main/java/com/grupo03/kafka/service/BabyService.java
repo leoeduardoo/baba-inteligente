@@ -20,6 +20,17 @@ public class BabyService {
     @Autowired
     UserService userService;
 
+    public BabyDTO get(String username) throws NotFoundException {
+
+        MyUser myUser = userService.loadMyUserByUsername(username);
+
+        if (myUser == null) {
+            throw new NotFoundException(username);
+        }
+
+        return BabyMapper.INSTANCE.babyToBabyDTO(babyRepository.findFirstByParentId(myUser.getId()).orElseThrow(() -> new NotFoundException(username + "'s baby")));
+    }
+
     public BabyDTO save(BabyDTO babyDTO, String username) throws NotFoundException {
 
         MyUser myUser = userService.loadMyUserByUsername(username);
@@ -28,6 +39,12 @@ public class BabyService {
             throw new NotFoundException(username);
         }
 
+        findBabyAndSetParameters(babyDTO, myUser);
+
+        return BabyMapper.INSTANCE.babyToBabyDTO(babyRepository.save(BabyMapper.INSTANCE.babyDTOToBaby(babyDTO)));
+    }
+
+    private void findBabyAndSetParameters(BabyDTO babyDTO, MyUser myUser) {
         Optional<Baby> babyOptional = babyRepository.findFirstByParentId(myUser.getId());
 
         if (babyOptional.isPresent()) {
@@ -36,8 +53,6 @@ public class BabyService {
         }
 
         babyDTO.setParentId(myUser.getId());
-
-        return BabyMapper.INSTANCE.babyToBabyDTO(babyRepository.save(BabyMapper.INSTANCE.babyDTOToBaby(babyDTO)));
     }
 
     private void verifyAllergies(BabyDTO babyDTO, Baby baby) {
