@@ -16,12 +16,12 @@ public class BabyController {
     @Autowired
     private BabyService babyService;
 
-    @PostMapping("baby")
+    @PostMapping("baby/save")
     public ResponseEntity<BabyDTO> save(@RequestBody BabyRequest babyRequest, @RequestParam("username") String username) throws NotFoundException {
         return new ResponseEntity(babyService.save(BabyMapper.INSTANCE.babyRequestToBabyDTO(babyRequest), username), HttpStatus.OK);
     }
 
-    @GetMapping("baby")
+    @GetMapping("baby/get")
     public ResponseEntity<BabyDTO> get(@RequestParam("username") String username) throws NotFoundException {
         return new ResponseEntity(babyService.get(username), HttpStatus.OK);
     }
